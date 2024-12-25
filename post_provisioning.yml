@@ -1,0 +1,37 @@
+---
+- name: Post-Provisioning Tasks
+  hosts: localhost
+  tasks:
+    # Install kubectl
+    - name: Install kubectl
+      shell: |
+        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        chmod +x kubectl
+        sudo mv kubectl /usr/local/bin/
+      args:
+        creates: /usr/local/bin/kubectl
+
+    # Configure kubeconfig
+    - name: Configure kubeconfig for EKS
+      shell: |
+        aws eks --region {{ aws_region }} update-kubeconfig --name {{ cluster_name }}
+      vars:
+        aws_region: "us-west-2"
+        cluster_name: "laravel-eks"
+
+    # Install Helm
+    - name: Install Helm
+      shell: |
+        curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+      args:
+        creates: /usr/local/bin/helm
+
+    # Update Laravel .env
+    - name: Configure Laravel .env
+      copy:
+        content: |
+          APP_ENV=production
+          APP_KEY={{ app_key }}
+          APP_DEBUG=false
+          DB_HOST={{ db_host }}
+          DB
