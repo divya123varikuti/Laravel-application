@@ -5,5 +5,5 @@ metadata:
 data:
   APP_ENV: production
   APP_DEBUG: "false"
-  APP_KEY: base64:your_app_key
-  APP_URL: http://your-load-balancer-url
+  APP_KEY: base64:your_app_key -->generate it uisng php artisan key:generate --show
+  APP_URL: http://your-load-balancer-url(184.72.178.45)
