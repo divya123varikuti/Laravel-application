@@ -180,7 +180,7 @@ laravel-service   LoadBalancer   10.100.200.1    203.0.113.25      80:30123/TCP 
 http://external-ip  -- Access the application using the EXTERNAL-IP in your browser.
 
 -------------------------------------------------------------------------------------------------------------------------------------
-
+http://184.72.178.45:8080/
 
 
 
