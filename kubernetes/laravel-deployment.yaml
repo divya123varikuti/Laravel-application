@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: laravel-container
-        image: your-dockerhub-username/laravel-app:latest
+        image: divya123varikuti/laravel-app:latest
         ports:
         - containerPort: 80
         envFrom:
